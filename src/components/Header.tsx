@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/", label: "首页" },
   { href: "/products", label: "产品中心" },
   { href: "/news", label: "新闻中心" },
+  { href: "/honors", label: "荣誉证书" },
   { href: "/about", label: "关于我们" },
   { href: "/contact", label: "联系我们" },
 ];
@@ -24,25 +25,32 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const textColor = isScrolled ? "text-secondary" : "text-white";
+  const hoverColor = isScrolled ? "hover:text-primary" : "hover:text-accent";
+  const subTextColor = isScrolled ? "text-gray-dark" : "text-white/70";
+  const mobileTextColor = isScrolled ? "text-secondary" : "text-white";
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-0 outline-none ${
         isScrolled
-          ? "bg-white shadow-lg py-2"
-          : "bg-transparent py-4"
+          ? "bg-white border-b border-gray-200 py-2"
+          : "bg-primary py-4"
       }`}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">J</span>
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+              isScrolled ? "bg-primary" : "bg-white"
+            }`}>
+              <span className={`font-bold text-xl ${isScrolled ? "text-white" : "text-primary"}`}>J</span>
             </div>
             <div>
-              <span className="text-lg font-bold text-secondary block leading-tight">
+              <span className={`text-lg font-bold block leading-tight ${textColor}`}>
                 {companyInfo.shortName}
               </span>
-              <span className="text-xs text-gray-dark hidden sm:block">
+              <span className={`text-xs hidden sm:block ${subTextColor}`}>
                 智能安防解决方案专家
               </span>
             </div>
@@ -53,18 +61,20 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-secondary hover:text-primary font-medium transition-colors relative group"
+                className={`${textColor} ${hoverColor} font-medium transition-colors relative group`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all group-hover:w-full ${
+                  isScrolled ? "bg-primary" : "bg-white"
+                }`}></span>
               </Link>
             ))}
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href={`tel:${companyInfo.contact}`}
-              className="flex items-center gap-2 text-primary"
+              href={`mailto:${companyInfo.email}`}
+              className={`flex items-center gap-2 ${isScrolled ? "text-primary" : "text-white"}`}
             >
               <svg
                 className="w-5 h-5"
@@ -76,7 +86,7 @@ export default function Header() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
               <span className="font-medium">在线咨询</span>
@@ -85,7 +95,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-secondary"
+            className={`lg:hidden p-2 ${textColor}`}
             aria-label="菜单"
           >
             <svg
@@ -114,13 +124,13 @@ export default function Header() {
         </div>
 
         {isMobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4 animate-fade-in">
+          <nav className={`lg:hidden mt-4 pb-4 border-t ${isScrolled ? "border-gray-200" : "border-white/30"} pt-4 animate-fade-in`}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-3 text-secondary hover:text-primary font-medium transition-colors"
+                className={`block py-3 ${mobileTextColor} ${isScrolled ? "hover:text-primary" : "hover:text-white/80"} font-medium transition-colors`}
               >
                 {link.label}
               </Link>

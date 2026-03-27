@@ -5,6 +5,7 @@ const quickLinks = [
   { href: "/", label: "首页" },
   { href: "/products", label: "产品中心" },
   { href: "/news", label: "新闻中心" },
+  { href: "/honors", label: "荣誉证书" },
   { href: "/about", label: "关于我们" },
   { href: "/contact", label: "联系我们" },
 ];
