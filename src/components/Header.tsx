@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/products", label: "产品中心" },
   { href: "/news", label: "新闻中心" },
   { href: "/honors", label: "荣誉证书" },
+  { href: "/recruitment", label: "人才招聘" },
   { href: "/about", label: "关于我们" },
   { href: "/contact", label: "联系我们" },
 ];
