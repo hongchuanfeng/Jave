@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   authors: [{ name: companyInfo.name }],
   creator: companyInfo.name,
   publisher: companyInfo.name,
-  metadataBase: new URL("https://www.juanshi.com"),
+  metadataBase: new URL("https://www.javisee.com/"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    url: "https://www.juanshi.com",
+    url: "https://www.javisee.com/",
     siteName: companyInfo.name,
     title: `${companyInfo.name} - 智能安防解决方案专家`,
     description:
